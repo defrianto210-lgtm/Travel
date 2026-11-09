@@ -1,0 +1,187 @@
+ <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Data Destinasi Wisata untuk Modal Detail
+        const destinasiData = {
+            talise: {
+                title: "Pantai Talise & Jembatan Ponulele",
+                category: "Bahari & ikonik",
+                location: "Jl. Rajamoili - Jl. Cut Mutia, Teluk Palu",
+                image: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
+                description: "Pantai Talise merupakan pusat keramaian dan tempat berkumpul favorit warga Kota Palu terutama di sore hingga malam hari. Terkenal dengan pemandangan Teluk Palu yang tenang dan sunset spektakuler di balik perbukitan.",
+                info: [
+                    { label: "Jam Buka", value: "24 Jam Setiap Hari" },
+                    { label: "Tiket Masuk", value: "Gratis / Parkir Saja" },
+                    { label: "Aktivitas", value: "Kulineran, Sunset, Wisata Air" },
+                    { label: "Jarak dari Pusat Kota", value: "± 5 Menit" }
+                ]
+            },
+            pusentasi: {
+                title: "Pusentasi (Pusat Laut Donggala)",
+                category: "Fenomena Alam",
+                location: "Desa Towale, Kec. Banawa Tengah, Donggala",
+                image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+                description: "Pusentasi dalam bahasa Kaili berarti 'Pusat Laut'. Berupa sumur raksasa alami berdiameter 10 meter berdinding batu karang. Air di dalamnya sangat jernih berwarna biru tua dan rasanya asin karena terhubung dengan laut terbuka.",
+                info: [
+                    { label: "Jam Buka", value: "08:00 - 18:00 WITA" },
+                    { label: "Tiket Masuk", value: "Rp 10.000 / orang" },
+                    { label: "Aktivitas", value: "Berenang, Melompat Teberau, Foto" },
+                    { label: "Jarak dari Palu", value: "± 45 Menit (35 Km)" }
+                ]
+            },
+            matantimali: {
+                title: "Bukit Matantimali Paralayang",
+                category: "Petualangan & Pegunungan",
+                location: "Desa Wayu, Kec. Kinovaro, Kab. Sigi",
+                image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+                description: "Terletak pada ketinggian 1.000 mdpl, Bukit Matantimali diakui sebagai salah satu lokasi paralayang terbaik di Asia Tenggara karena memiliki hembusan angin termal yang stabil sepanjang tahun.",
+                info: [
+                    { label: "Jam Buka", value: "24 Jam (Terbaik Pagi & Sore)" },
+                    { label: "Tiket Masuk", value: "Rp 10.000 / orang" },
+                    { label: "Aktivitas", value: "Tandem Paralayang, Camping, View City" },
+                    { label: "Jarak dari Palu", value: "± 30 Menit" }
+                ]
+            },
+            lindu: {
+                title: "Danau Lindu & Taman Nasional Lore Lindu",
+                category: "Cagar Biosfer UNESCO",
+                location: "Kecamatan Lindu, Kabupaten Sigi",
+                image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80",
+                description: "Danau Lindu berada di tengah kawasan hutan hujan tropis Taman Nasional Lore Lindu. Terkenal dengan keheningan alamnya, keanekaragaman flora-fauna endemik Sulawesi (Anoa, Babirusa), dan situs megalitikum kuno.",
+                info: [
+                    { label: "Jam Buka", value: "24 Jam" },
+                    { label: "Izin Masuk", value: "Simaksi Balai Besar TNLL" },
+                    { label: "Aktivitas", value: "Trekking, Bird Watching, Situs Megalit" },
+                    { label: "Jarak dari Palu", value: "± 2.5 Jam" }
+                ]
+            },
+            nosarara: {
+                title: "Monumen Nosarara Nosabatutu (Tugu Perdamaian)",
+                category: "Sejarah & Budaya",
+                location: "Bukit Tondo, Mantikulore, Kota Palu",
+                image: "https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?auto=format&fit=crop&w=800&q=80",
+                description: "Simbol persaudaraan dan perdamaian di Sulawesi Tengah. Di area ini terdapat Gong Perdamaian Nusantara seberat 2 ton serta museum mini sejarah. Sangat indah dikunjungi malam hari untuk melihat citylight Kota Palu.",
+                info: [
+                    { label: "Jam Buka", value: "09:00 - 22:00 WITA" },
+                    { label: "Tiket Masuk", value: "Rp 5.000 / orang" },
+                    { label: "Aktivitas", value: "Wisata Edukasi, Night View, Cafe" },
+                    { label: "Jarak dari Pusat Palu", value: "± 15 Menit" }
+                ]
+            },
+            kampoengnelayan: {
+                title: "Kampoeng Nelayan & Resto Pesisir",
+                category: "Bahari & Kuliner",
+                location: "Kelurahan Talise, Palu Timur",
+                image: "https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=800&q=80",
+                description: "Kawasan kuliner pesisir pantai modern dengan gazebo di atas laut. Menyajikan hidangan seafood segar hasil tangkapan nelayan lokal sambil menikmati semilir angin teluk.",
+                info: [
+                    { label: "Jam Buka", value: "10:00 - 23:00 WITA" },
+                    { label: "Menu Utama", value: "Seafood Segar, Ikan Bakar" },
+                    { label: "Fasilitas", value: "Gazebo Laut, Live Music" },
+                    { label: "Jarak dari Pusat Kota", value: "± 10 Menit" }
+                ]
+            }
+        };
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            if(mobileMenu.classList.contains('hidden')) {
+                menuIcon.className = 'fa-solid fa-bars text-2xl';
+            } else {
+                menuIcon.className = 'fa-solid fa-xmark text-2xl';
+            }
+        });
+
+        // Close mobile menu on click link
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.className = 'fa-solid fa-bars text-2xl';
+            });
+        });
+
+        // Filter Destinasi
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const destinasiCards = document.querySelectorAll('.destinasi-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-ocean', 'text-white');
+                    b.classList.add('bg-white', 'text-gray-600');
+                });
+                btn.classList.remove('bg-white', 'text-gray-600');
+                btn.classList.add('bg-ocean', 'text-white');
+
+                const filter = btn.getAttribute('data-filter');
+
+                destinasiCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Modal Functionality
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const modalImg = document.getElementById('modal-img');
+        const modalCategory = document.getElementById('modal-category');
+        const modalTitle = document.getElementById('modal-title');
+        const modalLocation = document.getElementById('modal-location');
+        const modalDescription = document.getElementById('modal-description');
+        const modalInfo = document.getElementById('modal-info');
+
+        function openModal(key) {
+            const data = destinasiData[key];
+            if (!data) return;
+
+            modalImg.src = data.image;
+            modalCategory.innerText = data.category;
+            modalTitle.innerText = data.title;
+            modalLocation.innerHTML = `<i class="fa-solid fa-location-dot"></i> ${data.location}`;
+            modalDescription.innerText = data.description;
+
+            modalInfo.innerHTML = data.info.map(item => `
+                <div>
+                    <span class="text-gray-400 block uppercase text-[10px] tracking-wider">${item.label}</span>
+                    <span class="font-bold text-darkslate">${item.value}</span>
+                </div>
+            `).join('');
+
+            modalBackdrop.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modalBackdrop.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close Modal when click outside
+        modalBackdrop.addEventListener('click', (e) => {
+            if (e.target === modalBackdrop) {
+                closeModal();
+            }
+        });
+
+        // Newsletter Form Submit Simulator
+        function handleSubscribe(e) {
+            e.preventDefault();
+            const msg = document.getElementById('newsletter-message');
+            msg.innerText = "Terima kasih! Itinerary gratis telah dikirimkan ke email Anda.";
+            msg.classList.remove('hidden');
+            e.target.reset();
+            setTimeout(() => {
+                msg.classList.add('hidden');
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore Palu - Surga 5 Dimensi di Sulawesi Tengah</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Poppins & Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        ocean: {
+                            DEFAULT: '#0077b6',
+                            dark: '#023e8a',
+                            light: '#00b4d8',
+                        },
+                        sunset: {
+                            DEFAULT: '#ffb703',
+                            hover: '#fb8500',
+                        },
+                        sand: '#fefae0',
+                        darkslate: '#1e293b',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-overlay {
+            background: linear-gradient(180deg, rgba(2, 62, 138, 0.7) 0%, rgba(0, 119, 182, 0.85) 60%, rgba(30, 41, 59, 0.95) 100%);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 119, 182, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #0077b6;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="font-sans bg-gray-50 text-darkslate antialiased custom-scrollbar">
+
+    <!-- HEADER & NAVBAR -->
+    <header id="header" class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-ocean to-sunset flex items-center justify-center text-white font-bold text-xl shadow-md group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-compass"></i>
+                    </div>
+                    <div>
+                        <span class="text-2xl font-extrabold bg-gradient-to-r from-ocean-dark via-ocean to-sunset bg-clip-text text-transparent">ExplorePalu</span>
+                        <span class="block text-[10px] tracking-widest text-gray-500 font-semibold uppercase -mt-1">Sulawesi Tengah</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 font-medium text-gray-700">
+                    <a href="#beranda" class="px-3 py-2 rounded-lg hover:text-ocean hover:bg-ocean/5 transition-colors">Beranda</a>
+                    <a href="#profil" class="px-3 py-2 rounded-lg hover:text-ocean hover:bg-ocean/5 transition-colors">Profil Kota</a>
+                    <a href="#wisata" class="px-3 py-2 rounded-lg hover:text-ocean hover:bg-ocean/5 transition-colors">Wisata</a>
+                    <a href="#kuliner" class="px-3 py-2 rounded-lg hover:text-ocean hover:bg-ocean/5 transition-colors">Kuliner</a>
+                    <a href="#budaya" class="px-3 py-2 rounded-lg hover:text-ocean hover:bg-ocean/5 transition-colors">Budaya</a>
+                    <a href="#tips" class="px-3 py-2 rounded-lg hover:text-ocean hover:bg-ocean/5 transition-colors">Tips Travel</a>
+                    <a href="#kontak" class="ml-2 px-5 py-2.5 rounded-full bg-ocean hover:bg-ocean-dark text-white font-semibold shadow-md shadow-ocean/20 transition-all">Hubungi Kami</a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg text-gray-700 hover:text-ocean focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-2 shadow-lg">
+            <a href="#beranda" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-ocean/10 hover:text-ocean">Beranda</a>
+            <a href="#profil" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-ocean/10 hover:text-ocean">Profil Kota</a>
+            <a href="#wisata" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-ocean/10 hover:text-ocean">Wisata</a>
+            <a href="#kuliner" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-ocean/10 hover:text-ocean">Kuliner</a>
+            <a href="#budaya" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-ocean/10 hover:text-ocean">Budaya</a>
+            <a href="#tips" class="mobile-nav-link block px-4 py-2.5 rounded-lg text-gray-700 font-medium hover:bg-ocean/10 hover:text-ocean">Tips Travel</a>
+            <a href="#kontak" class="mobile-nav-link block px-4 py-2.5 rounded-lg bg-ocean text-white text-center font-semibold mt-4">Hubungi Kami</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="beranda" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" alt="Pantai Kota Palu" class="w-full h-full object-cover">
+            <div class="absolute inset-0 gradient-overlay"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white py-20">
+            <span class="inline-block px-4 py-1.5 mb-6 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-sm font-semibold text-sunset tracking-wider uppercase">
+                <i class="fa-solid fa-location-dot mr-1.5"></i> Lembah Teluk Palu, Sulawesi Tengah
+            </span>
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight mb-6">
+                Jelajahi Keindahan Pesona <span class="text-sunset underline decoration-sunset/40">Kota Palu</span>
+            </h1>
+            <p class="text-lg sm:text-xl text-gray-200 max-w-3xl mx-auto mb-10 font-light leading-relaxed">
+                Nikmati eksotisme hamparan landscape 5 dimensi yang spektakuler: laut biru teluk, aliran sungai meliuk, lembah hijau, bukit mempesona, hingga pegunungan megah dalam satu bingkai.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#wisata" class="w-full sm:w-auto px-8 py-4 rounded-full bg-sunset hover:bg-sunset-hover text-darkslate font-bold text-lg shadow-lg hover:shadow-sunset/40 transition-all transform hover:-translate-y-0.5">
+                    Mulai Petualangan <i class="fa-solid fa-arrow-right ml-2"></i>
+                </a>
+                <a href="#profil" class="w-full sm:w-auto px-8 py-4 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/40 text-white font-semibold text-lg transition-all">
+                    Mengenal Palu
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Down Arrow -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10 text-white text-center animate-bounce">
+            <a href="#profil" class="text-white/80 hover:text-white">
+                <i class="fa-solid fa-chevron-down text-2xl"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- PROFIL KOTA PALU (5 DIMENSI) -->
+    <section id="profil" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-ocean uppercase mb-2">Keunikan Geografis</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-darkslate">Kota 5 Dimensi Yang Unik</h3>
+                <div class="w-20 h-1 bg-sunset mx-auto my-4 rounded-full"></div>
+                <p class="text-gray-600 text-base sm:text-lg">
+                    Kota Palu terletak persis di garis khatulistiwa dan mengitari Teluk Palu. Keistimewaan geografis ini menjadikan Palu sebagai satu-satunya kota yang memiliki lanskap alam 5 dimensi lengkap.
+                </p>
+            </div>
+
+            <!-- Grid 5 Dimensi -->
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                <!-- Dimensi 1: Laut -->
+                <div class="bg-gradient-to-b from-blue-50 to-white p-6 rounded-2xl border border-blue-100 text-center hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-ocean/10 text-ocean flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-water"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2 text-darkslate">1. Laut</h4>
+                    <p class="text-sm text-gray-600">Teluk Palu menyajikan perairan tenang ideal untuk wisata bahari, diving, dan sunset.</p>
+                </div>
+                <!-- Dimensi 2: Sungai -->
+                <div class="bg-gradient-to-b from-cyan-50 to-white p-6 rounded-2xl border border-cyan-100 text-center hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-cyan-600/10 text-cyan-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-bridge"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2 text-darkslate">2. Sungai</h4>
+                    <p class="text-sm text-gray-600">Sungai Palu yang membelah kota menjadi sarana air ikonik penghubung aktivitas masyarakat.</p>
+                </div>
+                <!-- Dimensi 3: Lembah -->
+                <div class="bg-gradient-to-b from-amber-50 to-white p-6 rounded-2xl border border-amber-100 text-center hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-sunset/10 text-sunset-hover flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-sun"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2 text-darkslate">3. Lembah</h4>
+                    <p class="text-sm text-gray-600">Terletak di dataran lembah dengan curah hujan unik dan panorama khas daerah tropis.</p>
+                </div>
+                <!-- Dimensi 4: Bukit -->
+                <div class="bg-gradient-to-b from-emerald-50 to-white p-6 rounded-2xl border border-emerald-100 text-center hover:shadow-xl transition-all">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-emerald-600/10 text-emerald-600 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-mountain-city"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2 text-darkslate">4. Bukit</h4>
+                    <p class="text-sm text-gray-600">Perbukitan hijau mengelilingi pemukiman, menjadi spot paralayang terbaik nasional.</p>
+                </div>
+                <!-- Dimensi 5: Pegunungan -->
+                <div class="bg-gradient-to-b from-slate-50 to-white p-6 rounded-2xl border border-slate-200 text-center hover:shadow-xl transition-all md:col-span-3 lg:col-span-1">
+                    <div class="w-14 h-14 mx-auto rounded-full bg-slate-700/10 text-slate-700 flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-solid fa-mountain"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2 text-darkslate">5. Pegunungan</h4>
+                    <p class="text-sm text-gray-600">Pegunungan Gawalise dan Lore Lindu yang menjulang megah membentengi kota.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DESTINASI WISATA POPULER -->
+    <section id="wisata" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <h2 class="text-xs font-bold tracking-widest text-ocean uppercase mb-2">Eksplorasi Tempat Keren</h2>
+                    <h3 class="text-3xl sm:text-4xl font-extrabold text-darkslate">Destinasi Wisata Pilihan</h3>
+                </div>
+                <!-- Filter Kategori -->
+                <div class="mt-6 md:mt-0 flex flex-wrap gap-2" id="filter-buttons">
+                    <button data-filter="all" class="filter-btn active px-4 py-2 rounded-full text-sm font-medium bg-ocean text-white shadow-sm transition-all">Semua</button>
+                    <button data-filter="bahari" class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition-all">Bahari & Pantai</button>
+                    <button data-filter="alam" class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition-all">Alam & Gunung</button>
+                    <button data-filter="budaya" class="filter-btn px-4 py-2 rounded-full text-sm font-medium bg-white text-gray-600 hover:bg-gray-100 border border-gray-200 transition-all">Sejarah & Budaya</button>
+                </div>
+            </div>
+
+            <!-- Grid Kartu Destinasi -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="destinasi-grid">
+                
+                <!-- Card 1: Pantai Talise & Jembatan Ponulele -->
+                <div class="destinasi-card bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 card-hover" data-category="bahari">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80" alt="Pantai Talise" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 bg-ocean text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bahari</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1 text-amber-400 text-sm mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="font-bold text-gray-700 ml-1">4.8</span>
+                            <span class="text-gray-400 text-xs">(320+ Ulasan)</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-darkslate mb-2">Pantai Talise & Jembatan Ponulele</h4>
+                        <p class="text-gray-600 text-sm line-clamp-2 mb-4">Ikon Kota Palu dengan pemandangan Teluk Palu yang memukau, pusat santai sore dan menyaksikan matahari terbenam.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xs font-semibold text-gray-500"><i class="fa-solid fa-location-dot text-ocean mr-1"></i> Pusat Kota Palu</span>
+                            <button onclick="openModal('talise')" class="text-ocean hover:text-ocean-dark font-semibold text-sm flex items-center gap-1">
+                                Detail <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Pusat Laut Donggala -->
+                <div class="destinasi-card bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 card-hover" data-category="bahari">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" alt="Pusentasi Donggala" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 bg-ocean text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bahari</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1 text-amber-400 text-sm mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="font-bold text-gray-700 ml-1">4.9</span>
+                            <span class="text-gray-400 text-xs">(540+ Ulasan)</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-darkslate mb-2">Pusentasi (Pusat Laut Donggala)</h4>
+                        <p class="text-gray-600 text-sm line-clamp-2 mb-4">Sumur raksasa alami berdiameter 10 meter berisi air laut jernih kebiruan yang terhubung langsung ke pantai secara bawah tanah.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xs font-semibold text-gray-500"><i class="fa-solid fa-location-dot text-ocean mr-1"></i> Towale, Donggala</span>
+                            <button onclick="openModal('pusentasi')" class="text-ocean hover:text-ocean-dark font-semibold text-sm flex items-center gap-1">
+                                Detail <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Bukit Matantimali -->
+                <div class="destinasi-card bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 card-hover" data-category="alam">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80" alt="Bukit Matantimali" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Alam</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1 text-amber-400 text-sm mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="font-bold text-gray-700 ml-1">4.9</span>
+                            <span class="text-gray-400 text-xs">(410+ Ulasan)</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-darkslate mb-2">Bukit Matantimali</h4>
+                        <p class="text-gray-600 text-sm line-clamp-2 mb-4">Spot paralayang standar internasional dengan pemandangan panoramic 360 derajat seluruh Lembah Palu dari ketinggian.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xs font-semibold text-gray-500"><i class="fa-solid fa-location-dot text-ocean mr-1"></i> Sigi (30 Menit dari Palu)</span>
+                            <button onclick="openModal('matantimali')" class="text-ocean hover:text-ocean-dark font-semibold text-sm flex items-center gap-1">
+                                Detail <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Danau Lindu & Taman Nasional Lore Lindu -->
+                <div class="destinasi-card bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 card-hover" data-category="alam">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80" alt="Danau Lindu" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Alam</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1 text-amber-400 text-sm mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="font-bold text-gray-700 ml-1">4.7</span>
+                            <span class="text-gray-400 text-xs">(210+ Ulasan)</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-darkslate mb-2">Danau Lindu & TN Lore Lindu</h4>
+                        <p class="text-gray-600 text-sm line-clamp-2 mb-4">Kawasan konservasi cagar biosfer UNESCO lengkap dengan danau cantik di atas pegunungan dan situs batu megalitikum kuno.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xs font-semibold text-gray-500"><i class="fa-solid fa-location-dot text-ocean mr-1"></i> Kab. Sigi</span>
+                            <button onclick="openModal('lindu')" class="text-ocean hover:text-ocean-dark font-semibold text-sm flex items-center gap-1">
+                                Detail <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Tugu Perdamaian Nosarara Nosabatutu -->
+                <div class="destinasi-card bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 card-hover" data-category="budaya">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1569949381669-ecf31ae8e613?auto=format&fit=crop&w=800&q=80" alt="Tugu Perdamaian" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Budaya</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1 text-amber-400 text-sm mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="font-bold text-gray-700 ml-1">4.8</span>
+                            <span class="text-gray-400 text-xs">(280+ Ulasan)</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-darkslate mb-2">Monumen Nosarara Nosabatutu</h4>
+                        <p class="text-gray-600 text-sm line-clamp-2 mb-4">Monumen simbol persatuan ("Bersaudara dan Bersatu") lengkap dengan Gong Perdamaian Nusantara di puncak perbukitan.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xs font-semibold text-gray-500"><i class="fa-solid fa-location-dot text-ocean mr-1"></i> Mantikulore, Palu</span>
+                            <button onclick="openModal('nosarara')" class="text-ocean hover:text-ocean-dark font-semibold text-sm flex items-center gap-1">
+                                Detail <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6: Kampoeng Nelayan & Pantai Bau-Bau -->
+                <div class="destinasi-card bg-white rounded-2xl overflow-hidden shadow-md border border-gray-100 card-hover" data-category="bahari">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=800&q=80" alt="Kampoeng Nelayan" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 bg-ocean text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Bahari</span>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center gap-1 text-amber-400 text-sm mb-2">
+                            <i class="fa-solid fa-star"></i>
+                            <span class="font-bold text-gray-700 ml-1">4.6</span>
+                            <span class="text-gray-400 text-xs">(190+ Ulasan)</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-darkslate mb-2">Kampoeng Nelayan Palu</h4>
+                        <p class="text-gray-600 text-sm line-clamp-2 mb-4">Kawasan santai tepi laut modern dengan resto-resto seafood segar dan pemandangan kapal-kapal di teluk.</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                            <span class="text-xs font-semibold text-gray-500"><i class="fa-solid fa-location-dot text-ocean mr-1"></i> Talise, Palu</span>
+                            <button onclick="openModal('kampoengnelayan')" class="text-ocean hover:text-ocean-dark font-semibold text-sm flex items-center gap-1">
+                                Detail <i class="fa-solid fa-chevron-right text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- KULINER KHAS PALU -->
+    <section id="kuliner" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-sunset uppercase mb-2">Cita Rasa Otentik</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-darkslate">Kuliner Khas Kota Palu</h3>
+                <div class="w-20 h-1 bg-ocean mx-auto my-4 rounded-full"></div>
+                <p class="text-gray-600 text-base">Goyang lidah Anda dengan masakan berbumbu khas Kaili yang kaya rempah, pedas, dan menyegarkan.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Kuliner 1: Kaledo -->
+                <div class="bg-gradient-to-br from-amber-50/50 to-white p-6 rounded-2xl border border-amber-100 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-amber-500/10 text-amber-600 flex items-center justify-center text-2xl font-bold">🍲</span>
+                            <span class="text-xs font-bold text-amber-600 bg-amber-100 px-3 py-1 rounded-full">Must Try</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-darkslate mb-2">Kaledo (Kaki Lembu Donggala)</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Sup kaki sapi gurih khas dengan kuah bening bercita rasa asam pedas yang segar dari asam jawa muda dan cabai rawit hijau. Dinikmati menggunakan sedotan untuk sumsumnya!</p>
+                    </div>
+                    <div class="pt-4 border-t border-amber-100 flex items-center justify-between text-xs font-semibold text-gray-500">
+                        <span><i class="fa-solid fa-utensils text-amber-500 mr-1"></i> Berkuah Asam Pedas</span>
+                        <span>Pasangan: Nasi Jagung</span>
+                    </div>
+                </div>
+
+                <!-- Kuliner 2: UT Dada -->
+                <div class="bg-gradient-to-br from-orange-50/50 to-white p-6 rounded-2xl border border-orange-100 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-orange-500/10 text-orange-600 flex items-center justify-center text-2xl font-bold">🥣</span>
+                            <span class="text-xs font-bold text-orange-600 bg-orange-100 px-3 py-1 rounded-full">Populer</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-darkslate mb-2">Uta Dada</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Kuliner bersantan khas Kaili berbahan dasar ayam kampung asap atau ikan cakalang asap, diolah dengan bumbu kunyit dan cabai pedas menyegarkan.</p>
+                    </div>
+                    <div class="pt-4 border-t border-orange-100 flex items-center justify-between text-xs font-semibold text-gray-500">
+                        <span><i class="fa-solid fa-fire text-orange-500 mr-1"></i> Santan & Aroma Asap</span>
+                        <span>Ayam / Ikan</span>
+                    </div>
+                </div>
+
+                <!-- Kuliner 3: Lalampa Toboli -->
+                <div class="bg-gradient-to-br from-emerald-50/50 to-white p-6 rounded-2xl border border-emerald-100 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center text-2xl font-bold">🍙</span>
+                            <span class="text-xs font-bold text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">Camilan</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-darkslate mb-2">Lalampa Toboli</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Ketan gurih dibungkus daun pisang berisi olahan ikan tongkol pedas (abon ikan khas), kemudian dibakar di atas bara api hingga harum.</p>
+                    </div>
+                    <div class="pt-4 border-t border-emerald-100 flex items-center justify-between text-xs font-semibold text-gray-500">
+                        <span><i class="fa-solid fa-leaf text-emerald-500 mr-1"></i> Ketan Bakar Isi Ikan</span>
+                        <span>Oleh-Oleh Khas</span>
+                    </div>
+                </div>
+
+                <!-- Kuliner 4: Nasi Jagung (Kalandue) -->
+                <div class="bg-gradient-to-br from-yellow-50/50 to-white p-6 rounded-2xl border border-yellow-100 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="w-12 h-12 rounded-xl bg-yellow-500/10 text-yellow-600 flex items-center justify-center text-2xl font-bold">🌽</span>
+                            <span class="text-xs font-bold text-yellow-600 bg-yellow-100 px-3 py-1 rounded-full">Makanan Pokok</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-darkslate mb-2">Nasi Jagung Palu</h4>
+                        <p class="text-gray-600 text-sm leading-relaxed mb-4">Olahan beras yang dicampur dengan pipilan jagung kuning kering yang telah ditumbuk halus. Makanan sehat tinggi serat pasangan sempurna Kaledo.</p>
+                    </div>
+                    <div class="pt-4 border-t border-yellow-100 flex items-center justify-between text-xs font-semibold text-gray-500">
+                        <span><i class="fa-solid fa-wheat-awn text-yellow-500 mr-1"></i> Pokok Khas Kaili</span>
+                        <span>Bebas Gluten</span>
+                    </div>
+                </div>
+
+                <!-- Kuliner 5: Bawang Goreng Palu -->
+                <div class="bg-gradient-to-br from-red-50/50 to-white p-6 rounded-2xl border border-red-100 shadow-sm hover:shadow-lg transition-all flex flex-col justify-between md:col-span-2 lg:col-span-2">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <div class="w-full md:w-1/3 h-40 bg-gradient-to-tr from-amber-200 to-amber-400 rounded-xl flex items-center justify-center text-5xl">
+                            🧅
+                        </div>
+                        <div class="w-full md:w-2/3">
+                            <span class="text-xs font-bold text-red-600 bg-red-100 px-3 py-1 rounded-full uppercase">Oleh-oleh Premium #1</span>
+                            <h4 class="text-2xl font-bold text-darkslate mt-2 mb-2">Bawang Goreng Palu (Bawang Batu)</h4>
+                            <p class="text-gray-600 text-sm leading-relaxed mb-4">Terkenal ke seluruh Indonesia karena menggunakan varietas *Bawang Batu* endemik Palu. Memiliki tekstur sangat renyah, gurih alami tanpa tepung, dan tidak gampang melempem.</p>
+                            <span class="inline-flex items-center text-xs font-bold text-ocean bg-ocean/10 px-3 py-1.5 rounded-lg">
+                                <i class="fa-solid fa-box-open mr-2"></i> Wajib Dibeli Sebagai Oleh-Oleh
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- BUDAYA & SENI LOKAL -->
+    <section id="budaya" class="py-24 bg-darkslate text-white relative overflow-hidden">
+        <!-- Decorative Circle -->
+        <div class="absolute -right-20 -top-20 w-80 h-80 bg-ocean/20 rounded-full blur-3xl"></div>
+        <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-sunset/10 rounded-full blur-3xl"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-sunset uppercase mb-2">Kekayaan Tradisi</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold">Warisan Budaya Suku Kaili</h3>
+                <div class="w-20 h-1 bg-ocean mx-auto my-4 rounded-full"></div>
+                <p class="text-gray-300 text-base">Suku Kaili adalah suku asli mendiami kawasan Lembah Palu dengan kekayaan seni dan kearifan lokal yang tinggi.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Budaya 1 -->
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-sunset/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-sunset/20 text-sunset flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-shirt"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Baju Adat Kaili (Baju Nggembe)</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">Pakaian adat wanita Suku Kaili berbentuk segi empat bernuansa merah/emas dipadukan dengan sarung *Dapa* dan perhiasan tradisional berciri khas elegan.</p>
+                </div>
+
+                <!-- Budaya 2 -->
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-sunset/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-ocean/20 text-ocean-light flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-scroll"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Tenun Ikat Donggala</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">Kain tenun bernilai seni tinggi yang dibuat secara tradisional dengan alat tenun bukan mesin (ATBM). Motif Buya Sabe sangat tersohor hingga internasional.</p>
+                </div>
+
+                <!-- Budaya 3 -->
+                <div class="bg-white/5 border border-white/10 rounded-2xl p-6 backdrop-blur-sm hover:border-sunset/50 transition-all">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xl font-bold mb-4">
+                        <i class="fa-solid fa-drum"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-2">Festival Palu Nomoni</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed">Event kebudayaan tahunan megah yang menampilkan ritual adat *Balalia*, tarian kolosal Tari Dero, pertunjukan musik seruling Lalove, dan parade maritim.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PANDUAN & TIPS PERJALANAN -->
+    <section id="tips" class="py-24 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-xs font-bold tracking-widest text-ocean uppercase mb-2">Panduan Wisatawan</h2>
+                <h3 class="text-3xl sm:text-4xl font-extrabold text-darkslate">Tips Perjalanan Ke Palu</h3>
+                <div class="w-20 h-1 bg-sunset mx-auto my-4 rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Transportasi -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
+                    <div class="w-14 h-14 bg-ocean/10 text-ocean rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-plane-arrival"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-darkslate mb-3">Akses Transportasi</h4>
+                    <p class="text-gray-600 text-sm mb-4">Penerbangan langsung tersedia ke **Bandara Mutiara SIS Al-Jufri Palu (PLW)** dari Jakarta, Makassar, Surabaya, dan Balikpapan.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mt-auto">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Taksi Bandara & Grab/Gojek Aktif</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-check text-emerald-500"></i> Rental Mobil/Motor Melimpah</li>
+                    </ul>
+                </div>
+
+                <!-- Waktu Terbaik -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
+                    <div class="w-14 h-14 bg-amber-500/10 text-amber-500 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-darkslate mb-3">Waktu Terbaik Berkunjung</h4>
+                    <p class="text-gray-600 text-sm mb-4">Bulan **Mei hingga Oktober** adalah periode cuaca paling cerah untuk menikmati pantai, bukit paralayang, dan keindahan danau.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mt-auto">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-sun text-amber-500"></i> Cuaca hangat & cerah</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-calendar-day text-amber-500"></i> September-Oktober (Festival Nomoni)</li>
+                    </ul>
+                </div>
+
+                <!-- Tips Praktis -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col">
+                    <div class="w-14 h-14 bg-emerald-500/10 text-emerald-600 rounded-2xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fa-solid fa-lightbulb"></i>
+                    </div>
+                    <h4 class="text-xl font-bold text-darkslate mb-3">Tips Praktis Di Palu</h4>
+                    <p class="text-gray-600 text-sm mb-4">Persiapkan pakaian santai yang menyerap keringat karena Kota Palu cenderung memiliki iklim hangat tropis di siang hari.</p>
+                    <ul class="text-sm text-gray-600 space-y-2 mt-auto">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-sun-plant-wilt text-emerald-500"></i> Bawa Sunscreen & Kacamata Hitam</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-money-bill-wave text-emerald-500"></i> Siapkan Uang Tunai Untuk Kuliner Lokal</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORM KONTAK & NEWSLETTER -->
+    <section id="kontak" class="py-20 bg-gradient-to-tr from-ocean-dark to-ocean text-white relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl sm:text-4xl font-extrabold mb-4">Siap Memulai Petualangan di Palu?</h2>
+            <p class="text-gray-200 text-base sm:text-lg max-w-2xl mx-auto mb-10">Dapatkan panduan gratis itinerary wisata Kota Palu 3 Hari 2 Malam langsung ke email Anda.</p>
+
+            <form id="newsletter-form" onsubmit="handleSubscribe(event)" class="max-w-md mx-auto flex flex-col sm:flex-row gap-3">
+                <input type="email" required placeholder="Masukkan alamat email Anda" class="w-full px-5 py-3.5 rounded-full text-darkslate focus:outline-none focus:ring-2 focus:ring-sunset text-sm">
+                <button type="submit" class="px-8 py-3.5 rounded-full bg-sunset hover:bg-sunset-hover text-darkslate font-bold text-sm transition-all whitespace-nowrap shadow-md">
+                    Dapatkan Itinerary <i class="fa-solid fa-paper-plane ml-1"></i>
+                </button>
+            </form>
+            <div id="newsletter-message" class="hidden mt-4 text-sm font-semibold text-sunset"></div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-darkslate text-gray-400 py-12 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-sunset flex items-center justify-center text-darkslate font-bold">
+                            <i class="fa-solid fa-compass"></i>
+                        </div>
+                        <span class="text-xl font-bold text-white">ExplorePalu</span>
+                    </div>
+                    <p class="text-sm text-gray-400 max-w-sm">Portal informasi dan panduan wisata resmi Kota Palu & sekitarnya, Sulawesi Tengah. Temukan keindahan alam 5 dimensi bersama kami.</p>
+                </div>
+                <div>
+                    <h5 class="text-white font-semibold text-sm mb-4">Navigasi Cepat</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#beranda" class="hover:text-sunset transition-colors">Beranda</a></li>
+                        <li><a href="#profil" class="hover:text-sunset transition-colors">Profil Kota</a></li>
+                        <li><a href="#wisata" class="hover:text-sunset transition-colors">Destinasi Wisata</a></li>
+                        <li><a href="#kuliner" class="hover:text-sunset transition-colors">Kuliner Khas</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-white font-semibold text-sm mb-4">Media Sosial</h5>
+                    <div class="flex space-x-3">
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-ocean hover:text-white transition-all"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-ocean hover:text-white transition-all"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="#" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center hover:bg-ocean hover:text-white transition-all"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-gray-800 text-center text-xs text-gray-500">
+                <p>&copy; 2026 Explore Palu. All Rights Reserved. Designed for Travel Enthusiasts.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL DETAIL DESTINASI -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black/60 z-50 hidden backdrop-blur-sm transition-opacity flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative custom-scrollbar transform transition-all">
+            <!-- Modal Header / Image -->
+            <div class="relative h-64 sm:h-72">
+                <img id="modal-img" src="" alt="Detail Wisata" class="w-full h-full object-cover">
+                <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-all focus:outline-none">
+                    <i class="fa-solid fa-xmark text-xl"></i>
+                </button>
+                <div class="absolute bottom-4 left-4 bg-ocean text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider" id="modal-category">
+                    Kategori
+                </div>
+            </div>
+
+            <!-- Modal Content -->
+            <div class="p-6 sm:p-8">
+                <h3 class="text-2xl font-extrabold text-darkslate mb-2" id="modal-title">Nama Destinasi</h3>
+                <p class="text-xs text-ocean font-semibold mb-4 flex items-center gap-1" id="modal-location">
+                    <i class="fa-solid fa-location-dot"></i> Lokasi
+                </p>
+                <div class="w-full h-px bg-gray-100 mb-4"></div>
+                <p class="text-gray-600 text-sm leading-relaxed mb-6" id="modal-description">
+                    Deskripsi lengkap destinasi wisata.
+                </p>
+
+                <!-- Highlights / Info Grid -->
+                <div class="bg-gray-50 rounded-2xl p-4 grid grid-cols-2 gap-4 text-xs font-medium text-gray-600 mb-6" id="modal-info">
+                    <!-- Dynamic Info inserted via JS -->
+                </div>
+
+                <div class="flex justify-end gap-3">
+                    <button onclick="closeModal()" class="px-6 py-2.5 rounded-full bg-gray-200 text-gray-700 font-semibold text-sm hover:bg-gray-300 transition-all">Tutup</button>
+                    <a href="#kontak" onclick="closeModal()" class="px-6 py-2.5 rounded-full bg-ocean text-white font-semibold text-sm hover:bg-ocean-dark transition-all">Rencanakan Kunjungan</a>
+                </div>
+            </div>
+        </div>
+    </div>
